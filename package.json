@@ -37,6 +37,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.chelun.com:frontend/cl-util.git"
+    "url": "git@github.com:lixilin123/util.git"
   }
 }
