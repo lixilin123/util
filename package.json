@@ -1,0 +1,42 @@
+{
+  "name": "cl-util",
+  "version": "1.1.0",
+  "description": "车轮前端公共jssdk",
+  "main": "lib/index.js",
+  "author": "chelunFE",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "promise": "^8.0.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "scripts": {
+    "watch:ts": "tsc -w",
+    "watch:scss": "node-sass -w ./src -o ./lib",
+    "watch": "concurrently -k \"yarn watch:ts\" \"yarn watch:scss\"",
+    "build": "rm -rfv ./lib && tsc && node-sass ./src -o ./lib",
+    "prebuild": "typedoc src/ --out public --excludePrivate --excludeProtected "
+  },
+  "private": true,
+  "devDependencies": {
+    "@types/lodash": "^4.14.118",
+    "@types/node": "^10.12.10",
+    "@types/react": "^16.7.7",
+    "@types/react-dom": "^16.0.11",
+    "concurrently": "^4.1.0",
+    "node-sass": "^4.11.0",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-external-module-name": "^2.0.0",
+    "typescript": "^3.4.3"
+  },
+  "directories": {
+    "doc": "doc",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.chelun.com:frontend/cl-util.git"
+  }
+}

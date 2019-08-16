@@ -1,0 +1,13 @@
+.cl-ContentLoader-animation.cl-rect-shape, .cl-ContentLoader-animation.cl-round-shape, .cl-ContentLoader-animation.cl-text-row,
+.cl-ContentLoader-animation .cl-rect-shape,
+.cl-ContentLoader-animation .cl-round-shape,
+.cl-ContentLoader-animation .cl-text-row {
+  animation: contentLoader-animate 1.5s infinite; }
+
+@keyframes contentLoader-animate {
+  0% {
+    opacity: .6; }
+  50% {
+    opacity: 1; }
+  100% {
+    opacity: .6; } }

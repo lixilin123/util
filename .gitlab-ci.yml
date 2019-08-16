@@ -1,0 +1,37 @@
+# gitlab CI 用于发布 API 文档
+
+pages:
+  stage: deploy
+  before_script:
+  ## clean the working directory
+  - BUILD_DIR=/home/gitlab-runner/builds/$RUNNER_TOKEN/0
+  - CLONE_DIR="$BUILD_DIR/$CI_PROJECT_PATH"
+  - cd $BUILD_DIR
+  - sudo rm -rf $CLONE_DIR
+  - mkdir -p $CLONE_DIR
+
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )'
+
+  - eval $(ssh-agent -s)
+
+  - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
+
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+  - ssh-keyscan git.chelun.com >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+
+  - git config --global user.email "gitlab_runner@chelun.com"
+  - git config --global user.name "gitlab_runner"
+
+  ## clone the project each time (inefficient, consider performing fetch instead if it already exists)
+  - git clone git@git.chelun.com:frontend/cl-util.git $CLONE_DIR
+  - cd $CLONE_DIR
+  script:
+    mkdir test && rm -r test
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
